@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { IonButtons, IonContent, IonHeader, IonMenu, IonMenuButton, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, RefresherEventDetail } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonLabel, IonMenu, IonMenuButton, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, RefresherEventDetail } from '@ionic/react';
 import Annonce from './Annonce';
+import { add, addCircle, duplicate, exit, heart, home, homeOutline, homeSharp, list, listCircle, logIn } from 'ionicons/icons';
 function Menue() {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -35,20 +36,9 @@ function Menue() {
   }
   return (
     <>
-      <IonMenu contentId="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu Content</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent className="ion-padding">This is the menu content.</IonContent>
-      </IonMenu>
       <IonPage id="main-content">
         <IonHeader>
           <IonToolbar style={{ '--background': '#287aa9' }}>
-            <IonButtons slot="start">
-              <IonMenuButton style={{ '--color': 'white' }}></IonMenuButton>
-            </IonButtons>
             <IonTitle style={{ '--color': 'white' }}>Annonce</IonTitle>
           </IonToolbar>
         </IonHeader>
@@ -63,6 +53,24 @@ function Menue() {
                <Annonce />
                <Annonce />
             </IonContent>
+
+            <IonFooter>
+              <IonToolbar style={{ '--background': '#287aa9'}}>
+                <IonButtons slot="start" onClick={() => { window.location.href = '/listee'; }}>        
+                    <IonIcon icon={home} style={{ fontSize: '30px', color: 'white',marginLeft : '25px' }}></IonIcon>
+                </IonButtons>
+                
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <IonButtons onClick={() => { window.location.href = '/ajoutAnnonce'; }}>
+                    <IonIcon icon={duplicate} style={{ fontSize: '30px', color: 'white' }}></IonIcon>
+                  </IonButtons>
+                </div>
+                <IonButtons slot="end" onClick={() => { window.location.href = '/'; }}>
+                    <IonIcon icon={exit} style={{ fontSize: '30px', color: 'white', marginRight: '25px' }}></IonIcon>
+                </IonButtons>
+              </IonToolbar>
+            </IonFooter>
+
       </IonPage>
     </>
   );

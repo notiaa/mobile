@@ -24,6 +24,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Details from './pages/Details';
 import Menue from './pages/Menue';
+import AjoutAnnonce from './pages/AjoutAnnonce';
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -41,6 +42,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/details">
           <Details />
+        </Route>
+        <Route exact path="/ajoutAnnonce">
+          <AjoutAnnonce />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

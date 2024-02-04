@@ -1,15 +1,29 @@
-import React from 'react';
-import { IonBackButton, IonButtons, IonIcon, IonButton, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import React, { useState } from 'react';
+import { IonBackButton, IonButtons, IonIcon, IonButton, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonPage, IonTitle, IonToolbar, IonAlert } from '@ionic/react';
 import voitureImg from '../assets/voiture.jpg';
 import '../assets/details.css';
 import 'swiper/swiper-bundle.css';
-import { checkmark } from 'ionicons/icons';
+import { accessibility, car, checkmark, heart, tabletPortrait } from 'ionicons/icons';
 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Details: React.FC = () => {
-  const isSold = false; // Remplacez cela par la logique appropriée
+  const [isSold, setIsSold] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowAlert(true);
+  };
+
+  const handleAlertConfirm = () => {
+    setIsSold(true);
+    setShowAlert(false);
+  };
+
+  const handleAlertCancel = () => {
+    setShowAlert(false);
+  };
 
   return (
     <IonPage>
@@ -33,16 +47,6 @@ const Details: React.FC = () => {
           <SwiperSlide><IonImg src={voitureImg} /></SwiperSlide>
         </Swiper>
 
-          {/* <IonCardHeader>
-          <div className={`etiquette ${isSold ? 'vendue' : 'en-vente'}`}>
-            {isSold ? 'vendue' : 'en vente'}
-          </div>
-
-            <IonCardTitle style={{ fontSize: '1.5em',color:'#287aa9' }}>Volkswagen golf</IonCardTitle>
-            <IonCardSubtitle>Donne sasany marque</IonCardSubtitle>
-            <IonCardTitle style={{ fontSize: '1.5em',color:'#287aa9' }}>10 090 £</IonCardTitle>
-          </IonCardHeader> */}
-
           <IonList lines='none'>
           
             <IonItem className='item'>
@@ -59,10 +63,34 @@ const Details: React.FC = () => {
             </IonItem>
           
             <IonItem className='item'>
-                <IonLabel><b>Statut : </b> div bataina eto</IonLabel>  
+                <IonLabel><b>Statut : </b> <div className={`etiquette ${isSold ? 'vendue' : 'en-vente'}`}>
+            {isSold ? 'vendue' : 'en vente'}
+          </div></IonLabel>  
             </IonItem>
-            
-            <IonButton>Vendre la voiture</IonButton>
+            <br />
+
+            {!isSold && (
+            <IonButton expand="full" onClick={handleButtonClick}>Vendre la voiture</IonButton>
+            )
+          }
+            <IonAlert
+        isOpen={showAlert}
+        onDidDismiss={handleAlertCancel}
+        header={'Confirmation'}
+        message={'Êtes-vous sûr de vouloir vendre la voiture?'}
+        buttons={[
+          {
+            text: 'Annuler',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: handleAlertCancel
+          },
+          {
+            text: 'Oui',
+            handler: handleAlertConfirm
+          }
+        ]}
+      />
         </IonList>
     <br />
     <br />
@@ -95,6 +123,20 @@ const Details: React.FC = () => {
                   </div>
                   <div className="to-the-right">
                     <span><IonLabel>Diezel</IonLabel></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="custom-card">
+              <div className="custom-card-header">
+                <div className="custom-card-subtitle">
+                  <div className="side-by-side" style={{ display:'flex', alignItems:'center' }}>
+                    <span className="test"><IonIcon icon={car} style={{width: '40px',height: '20px',marginLeft: '-10px',color:'#F37121'}}></IonIcon></span>
+                    <span className="info"><IonLabel>Catégorie</IonLabel></span>
+                  </div>
+                  <div className="to-the-right">
+                    <span><IonLabel>SUV</IonLabel></span>
                   </div>
                 </div>
               </div>
@@ -147,7 +189,7 @@ const Details: React.FC = () => {
               <div className="custom-card-header">
                 <div className="custom-card-subtitle">
                   <div className="side-by-side">
-                    <span className="test"><img src='https://artifacts-cdn.autohero.com/retail-sharding/public/assets/power-596639fde4e38eb7ee84897c86fbb75b.svg' style={{width: '40px',height: '20px',marginLeft: '-10px'}}></img></span>
+                    <span className="test"><IonIcon icon={tabletPortrait} style={{width: '40px',height: '20px',marginLeft: '-10px',color:'#F37121'}}></IonIcon></span>
                     <span className="info"><IonLabel>Porte(s)</IonLabel></span>
                   </div>
                   <div className="to-the-right">
@@ -161,7 +203,7 @@ const Details: React.FC = () => {
               <div className="custom-card-header">
                 <div className="custom-card-subtitle">
                   <div className="side-by-side">
-                    <span className="test"><img src='https://artifacts-cdn.autohero.com/retail-sharding/public/assets/power-596639fde4e38eb7ee84897c86fbb75b.svg' style={{width: '40px',height: '20px',marginLeft: '-10px'}}></img></span>
+                    <span className="test"><IonIcon icon={accessibility} style={{width: '40px',height: '20px',marginLeft: '-10px',color:'#F37121'}}></IonIcon></span>
                     <span className="info"><IonLabel>Place(s)</IonLabel></span>
                   </div>
                   <div className="to-the-right">

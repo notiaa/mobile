@@ -7,8 +7,7 @@ const Login: React.FC = () => {
     const doLogin = (event: any) => {
         event.preventDefault();
         console.log('doLogin');
-        
-        // router.push('/nouvelpage','root');
+
     }
     return (
         <IonPage>
