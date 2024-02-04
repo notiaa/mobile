@@ -23,10 +23,10 @@ const Annonce = () => {
                 </ul>
             </div>
         </div>
+        <br />
         <div className="prix" onClick={() => { window.location.href = '/details'; }}>
             <div>
             <h5><IonLabel>10 090 £</IonLabel></h5>
-            <h6><IonLabel>prix mensuel </IonLabel><span className="montant"><IonLabel>195£</IonLabel></span></h6>
             </div>
         </div>
     </div>

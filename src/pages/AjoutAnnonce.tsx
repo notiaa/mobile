@@ -1,10 +1,15 @@
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCheckbox, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonPage, IonSelect, IonSelectOption, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
-import { addCircle, camera, duplicate, exit, home, image, logIn } from 'ionicons/icons';
-import React from 'react';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCheckbox, IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonInput, IonPage, IonSelect, IonSelectOption, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
+import { addCircle, camera, duplicate, exit, home, image, images, logIn } from 'ionicons/icons';
+import React, { useState } from 'react';
 import '../assets/details.css';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { usePhotoGalleri } from '../hooks/usePhotoGalleri';
+import PhotoGallery from './PhotoGallery';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
 const AjoutAnnonce: React.FC = () => {
-
+const {photos,takePhoto,deletePhoto} = usePhotoGalleri();
     return (
         <IonPage>
             <IonHeader>
@@ -22,16 +27,19 @@ const AjoutAnnonce: React.FC = () => {
             <hr className="ligne"></hr>
             </center>
             <br />
-<IonButton>
+    
+<IonButton onClick={takePhoto}>
     <IonIcon icon={camera}></IonIcon>
 </IonButton>
-<IonButton>
-    <IonIcon icon={image}></IonIcon>
-</IonButton>
 
-
-
-
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={1}
+          loop
+        >
+          <SwiperSlide><PhotoGallery photos={photos} deletePhoto={deletePhoto}/></SwiperSlide>
+          
+        </Swiper>
 
 
 </IonCardContent>
