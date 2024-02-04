@@ -28,18 +28,11 @@ const {photos,takePhoto,deletePhoto} = usePhotoGalleri();
             </center>
             <br />
     
-<IonButton onClick={takePhoto}>
+<IonButton expand='full'  onClick={takePhoto}>
     <IonIcon icon={camera}></IonIcon>
 </IonButton>
+<PhotoGallery photos={photos} deletePhoto={deletePhoto}/>
 
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={1}
-          loop
-        >
-          <SwiperSlide><PhotoGallery photos={photos} deletePhoto={deletePhoto}/></SwiperSlide>
-          
-        </Swiper>
 
 
 </IonCardContent>
